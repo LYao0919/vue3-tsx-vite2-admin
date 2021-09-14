@@ -1,0 +1,35 @@
+{
+  "name": "m-dmm",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:qa": "vue-tsc --noEmit && vite build --mode qa",
+    "build:online": "vue-tsc --noEmit && vite build --mode production",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.171",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "vant": "^3.1.5",
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.10",
+    "@vitejs/plugin-vue": "^1.3.0",
+    "@vitejs/plugin-vue-jsx": "^1.1.8",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-plugin-import": "^1.13.3",
+    "less": "^4.1.1",
+    "postcss-pxtorem": "^6.0.0",
+    "typescript": "^4.3.2",
+    "vite": "^2.4.4",
+    "vite-plugin-imp": "^2.0.7",
+    "vite-plugin-style-import": "^1.2.1",
+    "vue-tsc": "^0.2.2"
+  }
+}
