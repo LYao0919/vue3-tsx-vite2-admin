@@ -11,5 +11,5 @@ RUN npm run build:$ENV
 
 FROM hub.intra.doublefs.com/sys/baseimage/nginx:1.21
 WORKDIR /app
-COPY --from=build /app/dist /app/odm-m/dist
+COPY --from=build /app/dist /app/m-dmm/dist
 COPY nginx.conf /etc/nginx/conf.d/default.conf

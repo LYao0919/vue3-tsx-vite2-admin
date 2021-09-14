@@ -7,7 +7,7 @@ stages:
     - deploy to qa
     - deploy to online
 variables:
-    DFS_SVC_HOST: odm-m
+    DFS_SVC_HOST: m-dmm
 build-image:
     only:
         - dev

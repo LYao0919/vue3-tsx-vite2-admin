@@ -1,13 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 15:22:07
- * @LastEditTime: 2021-09-14 00:02:50
+ * @LastEditTime: 2021-09-14 12:34:59
  * @LastEditors: your name
  * @Description: In User Settings Edit
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import path from 'path';
 import styleImport from 'vite-plugin-style-import';
@@ -31,11 +30,15 @@ export default defineConfig({
     host: "devfe.doublefs.com",
     open: true,
     port: 3333,
-    hmr: { overlay: false }
+    hmr: { overlay: false },
+    https: true
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, './src'),
+      "@views": path.resolve(__dirname, './src/views'),
+      "@components": path.resolve(__dirname, './src/components'),
+      "@utils": path.resolve(__dirname, './src/utils'),
     },
   },
   base: './',

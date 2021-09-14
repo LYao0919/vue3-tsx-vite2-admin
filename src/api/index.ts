@@ -1,17 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 16:39:39
- * @LastEditTime: 2021-08-08 16:32:43
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-14 11:30:01
+ * @LastEditors: your name
  * @Description: In User Settings Edit
- * @FilePath: /odm-m/src/api/index.ts
+ * @FilePath: /m-dmm/src/api/index.ts
  */
-import { loginUrl } from "./LOGIN_URL";
-import { inventoryUrl } from "./INVENRTOYRY_URL";
+import { apiUrl } from "./API_URL";
 
 
 
 export const API = {
-  ...loginUrl,
-  ...inventoryUrl
+  ...apiUrl,
 }
