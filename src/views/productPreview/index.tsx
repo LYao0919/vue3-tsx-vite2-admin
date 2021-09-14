@@ -1,7 +1,7 @@
 /*
  * @Author: 鲁遥
  * @Date: 2021-09-14 11:05:31
- * @LastEditTime: 2021-09-14 14:45:29
+ * @LastEditTime: 2021-09-14 22:39:41
  * @LastEditors: your name
  * @Description:
  * @FilePath: /m-dmm/src/views/productPreview/index.tsx
@@ -18,14 +18,24 @@ export default defineComponent({
         const $API: any = inject("$API");
         const route = useRoute()
         const state = reactive({
-            list: []
+            productInfo: {
+                spuImageUrls: [],
+                sampleClothesResponseVO: {
+                    internalStylesCode: '',
+                    supplierStylesCode: '',
+                    buyerName: '',
+                    size: '',
+                    color: '',
+                    supplierName: ''
+                }
+            }
         })
 
         function getProductInfoList() {
             $API.getProductImage({
-                selectionSpuId: route.query.id,
+                crawlerColorSizeId: route.query.id,
             }).then((res: any) => {
-                state.list = res.result.spuImageUrls;
+                state.productInfo = res.result;
             });
         }
         getProductInfoList()
@@ -36,18 +46,31 @@ export default defineComponent({
             </SwipeItem>
         }
 
+        let productInfo = ({ internalStylesCode, supplierStylesCode, buyerName, size, color, supplierName }: any) => {
+            return <ul class='product-info'>
+                <li>内部款号：{internalStylesCode}</li>
+                <li>供应商款号：{supplierStylesCode}</li>
+                <li>买手：{buyerName}</li>
+                <li>尺码：{size}</li>
+                <li>颜色：{color}</li>
+                <li>供应商：{supplierName}</li>
+            </ul>
+        }
+
         return () => (
             <div>
-                {state.list.length > 0 ?
-                    <Swipe class="my-swipe" autoplay="3000" indicator-color="white">
+                {state.productInfo?.spuImageUrls.length > 0 ?
+                    <Swipe class="my-swipe" indicator-color="white">
                         {
-                            state.list.map(item => {
+                            state.productInfo?.spuImageUrls.map(item => {
                                 return imgItem(item)
                             })
                         }
                     </Swipe> : <Empty description="空空如也" />
                 }
-            </div >
+                {productInfo(state.productInfo.sampleClothesResponseVO)}
+
+            </div>
         )
     }
 })
