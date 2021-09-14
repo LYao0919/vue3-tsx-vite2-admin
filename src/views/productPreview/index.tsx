@@ -1,7 +1,7 @@
 /*
  * @Author: 鲁遥
  * @Date: 2021-09-14 11:05:31
- * @LastEditTime: 2021-09-14 14:45:29
+ * @LastEditTime: 2021-09-14 15:39:19
  * @LastEditors: your name
  * @Description:
  * @FilePath: /m-dmm/src/views/productPreview/index.tsx
@@ -35,6 +35,7 @@ export default defineComponent({
                 <img src={url} alt={url} srcset="" />
             </SwipeItem>
         }
+
 
         return () => (
             <div>
