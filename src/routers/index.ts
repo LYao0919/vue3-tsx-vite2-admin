@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 15:25:52
- * @LastEditTime: 2021-09-14 14:32:57
+ * @LastEditTime: 2021-09-14 21:22:05
  * @LastEditors: your name
  * @Description: In User Settings Edit
  * @FilePath: /m-dmm/src/routers/index.ts
@@ -32,11 +32,11 @@ const router = createRouter({
 router.beforeEach((to: any, from, next) => {
   console.log(to, 12345678);
   if (to.path == "/productPreview") {
-    if (to?.query?.id) localStorage.setItem('selectionSpuId', to?.query?.id);
+    if (to?.query?.id) localStorage.setItem('crawlerColorSizeId', to?.query?.id);
   } else if (to.path == "/") {
     next({
       name: 'ProductPreview',
-      query: { id: localStorage.getItem('selectionSpuId') }
+      query: { id: localStorage.getItem('crawlerColorSizeId') }
     })
   }
   // if (from.meta.keepAlive) {
