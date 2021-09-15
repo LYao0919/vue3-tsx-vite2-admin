@@ -1,22 +1,26 @@
 /*
  * @Author: 鲁遥
  * @Date: 2021-09-14 11:05:31
- * @LastEditTime: 2021-09-14 22:39:41
+ * @LastEditTime: 2021-09-15 12:28:22
  * @LastEditors: your name
  * @Description:
  * @FilePath: /m-dmm/src/views/productPreview/index.tsx
  */
 
 import { defineComponent, inject, reactive } from "vue";
-import { Swipe, SwipeItem, Empty } from 'vant'
+import { Swipe, SwipeItem, Empty, } from 'vant'
 import './index.less'
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+
 
 export default defineComponent({
     name: 'ProductPreview',
+
     setup() {
         const $API: any = inject("$API");
-        const route = useRoute()
+        const route = useRoute();
+        const store = useStore();
         const state = reactive({
             productInfo: {
                 spuImageUrls: [],
@@ -32,13 +36,18 @@ export default defineComponent({
         })
 
         function getProductInfoList() {
+            store.commit("setLoading", true);
             $API.getProductImage({
                 crawlerColorSizeId: route.query.id,
             }).then((res: any) => {
                 state.productInfo = res.result;
-            });
+            }).finally(() => {
+                store.commit("setLoading", false);
+            })
         }
+
         getProductInfoList()
+
 
         let imgItem = (url: string | undefined) => {
             return <SwipeItem>
