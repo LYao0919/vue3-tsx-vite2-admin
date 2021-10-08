@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 15:22:07
- * @LastEditTime: 2021-09-15 17:20:09
- * @LastEditors: your name
+ * @LastEditTime: 2021-10-08 18:03:35
+ * @LastEditors: luyao
  * @Description: In User Settings Edit
  */
 import { defineConfig } from 'vite'
@@ -11,21 +11,19 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import path from 'path';
 import styleImport from 'vite-plugin-style-import';
 import viteCompression from "vite-plugin-compression"; //gzip必备插件
+// import Components from 'unplugin-vue-components/vite'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    styleImport({
-      libs: [
-        {
-          libraryName: 'vant',
-          esModule: true,
-          resolveStyle: (name) => `vant/es/${name}/style`,
-        },
-      ],
-    }),
+
+    // Components({
+    //   resolvers: [ElementPlusResolver()],
+    // }),
+
     viteCompression({
       verbose: true,
       disable: false,
@@ -55,7 +53,7 @@ export default defineConfig({
       'axios',
       'vuex',
       'vue-router',
-      'vant'
+      'element-plus'
     ]
   },
   build: {
@@ -69,7 +67,11 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
+        entryFileNames: `assets/[name].[hash:8].js`,
+        chunkFileNames: `assets/[name].[hash:8].js`,
+        assetFileNames: `assets/[name].[hash:8].js`,
         manualChunks: {
+
         },
         sourcemap: false,
       },

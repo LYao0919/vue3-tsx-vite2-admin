@@ -1,28 +1,28 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 15:52:13
- * @LastEditTime: 2021-08-19 17:51:50
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-02 19:44:26
+ * @LastEditors: luyao
  * @Description: In User Settings Edit
- * @FilePath: /odm-m/src/utils/servers.ts
+ * @FilePath: /m-dmm的副本/src/utils/service.ts
  */
 import axios from 'axios'
 import { isPlainObject } from "lodash";
-import { Notify } from 'vant';
+// import { Notify } from 'vant';
 
 let lang = navigator.language;
 // 显示错误
 function errorHandle(info: any, time?: any, callback?: any) {
   let msg = info?.data?.message || info?.data?.msg;
   // 显示提示
-  Notify({
-    type: 'danger',
-    message: msg,
-    duration: time || 2000,
-    onClose: () => {
-      callback && callback();
-    }
-  });
+  // Notify({
+  //   type: 'danger',
+  //   message: msg,
+  //   duration: time || 2000,
+  //   onClose: () => {
+  //     callback && callback();
+  //   }
+  // });
 }
 const headerObj = {
   "Content-Type": "application/json;charset=UTF-8",
@@ -53,7 +53,7 @@ service.interceptors.request.use(
 // 响应拦截
 service.interceptors.response.use(
   response => {
-    
+
     if (response.data.code == 1304 || response.data.code === 20007) {
       window.location.href = response.data.data;
     } else if (response.data.code === 401 || response.data.code === 10001) {
@@ -80,7 +80,7 @@ service.interceptors.response.use(
           data = response.data.data
         }
         return data;
-      }else if(response.data.code===0&&!response.data.data){
+      } else if (response.data.code === 0 && !response.data.data) {
         return response.data;
       } else {
         return response.data.data;
@@ -92,7 +92,7 @@ service.interceptors.response.use(
     let msgCode = JSON.parse(error?.response?.data?.msg).code
     // if (error.response.status === 401 && msgCode == 1304) {
     if (error.response.status === 401) {
-      window.location.href = window.location.origin+'/login';
+      window.location.href = window.location.origin + '/login';
     }
     return Promise.reject(error);
   }
