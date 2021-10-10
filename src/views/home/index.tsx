@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-02 19:58:02
- * @LastEditTime: 2021-10-08 18:15:52
+ * @LastEditTime: 2021-10-08 20:39:19
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/home/index.tsx
@@ -51,7 +51,7 @@ export default defineComponent({
                     <el-main>
                         <router-view >
                             {
-                                ({ Component }) => {
+                                ({ Component }: any) => {
                                     return (meta.value as any).keepAlive ?
                                         <KeepAlive><Component /> </KeepAlive> : <Component />
                                 }

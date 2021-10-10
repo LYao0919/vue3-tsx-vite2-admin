@@ -1,14 +1,14 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-03 00:25:31
- * @LastEditTime: 2021-10-08 20:14:45
+ * @LastEditTime: 2021-10-09 14:58:15
  * @Description: 
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/form/index.tsx
  */
 
 import { defineComponent, reactive, ref } from "vue-demi";
-
+import dayjs from "dayjs";
 export default defineComponent({
     name: 'Form',
     setup() {
@@ -62,17 +62,17 @@ export default defineComponent({
                     <el-input type="textarea" v-model={formData.desc}></el-input>
                 </el-form-item>
 
-                {/* <el-form-item label="活动时间">
+                <el-form-item label="活动时间">
                     <el-col span={11}>
-                        <el-date-picker type="date" placeholder="选择日期" v-model={formData.date1} style="width: 100%;"></el-date-picker>
+                        {/* <el-date-picker type={'date'} placeholder="选择日期" v-model={formData.date1} style="width: 100%;"></el-date-picker> */}
                     </el-col>
                     <el-col class="line" span={2}>
                         -
                     </el-col>
                     <el-col span={11}>
-                        <el-time-picker placeholder="选择时间" v-model={formData.date2} style="width: 100%;"></el-time-picker>
+                        {/* <el-time-picker placeholder="选择时间" v-model={formData.date2} style="width: 100%;"></el-time-picker> */}
                     </el-col>
-                </el-form-item> */}
+                </el-form-item>
             </el-form >
         )
     },

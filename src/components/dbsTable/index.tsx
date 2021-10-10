@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-06 15:54:58
- * @LastEditTime: 2021-10-08 15:39:33
+ * @LastEditTime: 2021-10-09 19:55:25
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/components/dbsTable/index.tsx
@@ -204,7 +204,7 @@ export default defineComponent({
                         total={props.pageInfo.total}
                     />
                 }
-            </Fragment >
+            </Fragment>
         )
     }
 })

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 15:22:07
- * @LastEditTime: 2021-10-08 18:03:35
+ * @LastEditTime: 2021-10-10 15:28:55
  * @LastEditors: luyao
  * @Description: In User Settings Edit
  */
@@ -67,12 +67,6 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].[hash:8].js`,
-        chunkFileNames: `assets/[name].[hash:8].js`,
-        assetFileNames: `assets/[name].[hash:8].js`,
-        manualChunks: {
-
-        },
         sourcemap: false,
       },
     },

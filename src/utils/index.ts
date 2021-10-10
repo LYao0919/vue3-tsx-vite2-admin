@@ -1,10 +1,10 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-06 21:09:26
- * @LastEditTime: 2021-10-06 21:26:29
+ * @LastEditTime: 2021-10-08 20:37:36
  * @Description:
  * @LastEditors: luyao
- * @FilePath: /m-dmm的副本/src/utils/index.ts
+ * @FilePath: /vue3-tsx-vite-admin/src/utils/index.ts
  */
 
 
@@ -237,7 +237,7 @@ export const versionUpdated = async () => {
                     "Access-Control-Allow-Origin": "*",
                     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
                 },
-            })
+            } as any)
             .then(async (res) => {
                 let el = (document as any).createElement("html");
                 el.innerHTML = res.data;
@@ -263,7 +263,7 @@ export const versionUpdated = async () => {
 
 
 
-export let downExcel = ({ url, data, filename } = {}) => {
+export let downExcel = ({ url, data, filename }: any = {}) => {
     axios({
         // 用axios发送post请求
         method: "post",
