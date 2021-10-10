@@ -1,10 +1,10 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-02 23:59:43
- * @LastEditTime: 2021-10-06 21:35:42
+ * @LastEditTime: 2021-10-10 15:39:04
  * @Description:
  * @LastEditors: luyao
- * @FilePath: /m-dmm的副本/src/views/table/index.tsx
+ * @FilePath: /vue3-tsx-vite-admin/src/views/table/index.tsx
  */
 
 import { defineComponent, Fragment, reactive } from "vue-demi";
@@ -13,13 +13,13 @@ export default defineComponent({
     name: 'Table',
     setup() {
         let state = reactive({
-            // 全剧配置
+            // 全局配置
             configFlag: {
                 selection: true,
                 pagination: true, // 需要分页
                 index: false, // 需要序号
                 border: true,
-                indexr: true,
+                // indexr: true,
                 indexName: '序号啊'
             },
             // 分页相关配置

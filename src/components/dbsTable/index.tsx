@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-06 15:54:58
- * @LastEditTime: 2021-10-09 19:55:25
+ * @LastEditTime: 2021-10-10 15:38:42
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/components/dbsTable/index.tsx
@@ -43,7 +43,7 @@ export default defineComponent({
                 return {
                     pagination: true, // 是否需要分页
                     selection: false, // 是否需要多选
-                    indexr: false, // 是否需要序号
+                    index: false, // 是否需要序号
                     border: true,
                     color: "#333",
                     highlightCurrentRow: true,
@@ -156,7 +156,7 @@ export default defineComponent({
                         />}
 
                         {/* 序号列  */}
-                        {props.configFlag.indexr && <el-table-column
+                        {props.configFlag.index && <el-table-column
                             align="center"
                             width="100"
                             type="index"
