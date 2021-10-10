@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-06 21:09:26
- * @LastEditTime: 2021-10-08 20:37:36
+ * @LastEditTime: 2021-10-10 17:06:03
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/utils/index.ts
@@ -220,11 +220,15 @@ export const checkFull = () => {
 // 检查版本是否更新
 export const versionUpdated = async () => {
     return new Promise((resolve, reject) => {
-        let cur_hash = (document as any)
-            .getElementsByTagName("body")[0]
-            .getElementsByTagName("script")[1]
-            .src.split("-")[1]
-            .split(".")[0];
+        // let cur_hash = (document as any)
+        //     .getElementsByTagName("body")[0]
+        //     .getElementsByTagName("script")[1]
+        //     .src.split("-")[1]
+        //     .split(".")[0];
+
+        let cur_hash = document?.getElementsByTagName("head")[0]
+            ?.getElementsByTagName("link")[1]?.href?.split('vendor.')[1]?.split('.')[0];
+
         axios
             .get(`${window.location.protocol}//${window.location.host}`, {
                 withCredentials: true,
@@ -241,18 +245,23 @@ export const versionUpdated = async () => {
             .then(async (res) => {
                 let el = (document as any).createElement("html");
                 el.innerHTML = res.data;
+                // let new_hash = el
+                //     .getElementsByTagName("body")[0]
+                //     .getElementsByTagName("script")[1]
+                //     .src.split("-")[1]
+                //     .split(".")[0];
+
                 let new_hash = el
-                    .getElementsByTagName("body")[0]
-                    .getElementsByTagName("script")[1]
-                    .src.split("-")[1]
-                    .split(".")[0];
+                    ?.getElementsByTagName("head")[0]
+                    ?.getElementsByTagName("link")[1]?.href?.split('vendor.')[1]?.split('.')[0];
+
                 console.info(`最新版本:${new_hash} ,  当前版本:${cur_hash}`);
                 if (new_hash != cur_hash) {
                     console.info("有版本更新了");
                     el = null;
                     return resolve(true)
                 } else {
-                    console.info("无版本更新");
+                    console.info("暂无版本更新");
                     el = null;
                     return resolve(false)
 

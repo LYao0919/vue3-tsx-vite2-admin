@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-02 19:58:02
- * @LastEditTime: 2021-10-08 20:39:19
+ * @LastEditTime: 2021-10-10 16:56:31
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/home/index.tsx
@@ -35,7 +35,7 @@ export default defineComponent({
         })
 
         async function hasVersionUpdated() {
-            // verUpdate.value = await versionUpdated();
+            verUpdate.value = await versionUpdated();
         }
         return () => (
             <el-container class='el-container'>
@@ -44,9 +44,11 @@ export default defineComponent({
                     <el-header>
                         <ContainerHeader />
                     </el-header>
-                    <marquee class="ver-update" v-slots={{
-                        content: () => `～～～～ 已检测到版本更新了 ，请刷新页面获取最新版本 ～～～～`
-                    }} > </marquee>
+                    {
+                        verUpdate.value && <marquee class="ver-update" v-slots={{
+                            content: () => `～～～～ 已检测到版本更新了 ，请刷新页面获取最新版本 ～～～～`
+                        }} > </marquee>
+                    }
                     <tags />
                     <el-main>
                         <router-view >
