@@ -1,5 +1,5 @@
 include:
-    remote: 'https://git.intra.doublefs.com/sys/antimage/-/raw/master/.gitlab-ci-template.yml'
+    remote: 'xxxxxxx'
 
 stages:
     - build-image

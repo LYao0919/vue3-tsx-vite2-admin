@@ -1,7 +1,7 @@
 <!--
  * @Author: luyao
  * @Date: 2021-08-03 15:22:07
- * @LastEditTime: 2021-10-10 15:46:01
+ * @LastEditTime: 2021-10-10 16:16:25
  * @Description: 
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/README.md
@@ -11,6 +11,7 @@
 ```
 本项目使用vue3 + tsx + vite +elementPlus 构建的admin项目
 
+项目支持通过gitlab ci/cd  打包配置
 
 1、版本检测  --   线上版本发版后会自动检测提示版本通过
 
