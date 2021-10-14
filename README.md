@@ -1,7 +1,7 @@
 <!--
  * @Author: luyao
  * @Date: 2021-08-03 15:22:07
- * @LastEditTime: 2021-10-10 16:16:25
+ * @LastEditTime: 2021-10-14 21:22:29
  * @Description: 
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/README.md
@@ -27,7 +27,11 @@
 配置项分为 configFlag全局配置（包括是否需要显示分页组件、table序列号、序列号名称、table多选、border等功能， 扩展中···）
 
 
-后续会新增dbsForm相关组件，（更新中···）
+基于elementPlus封装的dbsForm已完成（elementplus库的时间、日期类组件的jsx版本会报错，已提bug，后续修复后补上）：
+
+支持json配置渲染form-item;
+
+支持form的搜索、验证、是否支持inline、form-item宽度设置、item中元素宽度设置等
 
 
 ```
