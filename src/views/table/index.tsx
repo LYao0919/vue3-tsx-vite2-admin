@@ -1,13 +1,14 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-02 23:59:43
- * @LastEditTime: 2021-10-10 15:39:04
+ * @LastEditTime: 2022-07-04 17:02:36
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/table/index.tsx
  */
 
-import { defineComponent, Fragment, reactive } from "vue-demi";
+import { defineComponent, Fragment, reactive, } from "vue-demi";
+import { h } from "vue";
 
 export default defineComponent({
     name: 'Table',
@@ -17,9 +18,8 @@ export default defineComponent({
             configFlag: {
                 selection: true,
                 pagination: true, // 需要分页
-                index: false, // 需要序号
+                index: true, // 需要序号
                 border: true,
-                // indexr: true,
                 indexName: '序号啊'
             },
             // 分页相关配置
@@ -150,19 +150,22 @@ export default defineComponent({
             // 表头
             columns: [
                 {
-                    value: "date",
-                    width: "100px",
-                    label: "日期",
+                    key: "date",
+                    minWidth: "100px",
+                    title: "日期",
                 },
                 {
-                    value: "name",
-                    width: "150px",
-                    label: "mc",
-                    slot: 'slotName',
+
+                    minWidth: "150px",
+                    title: "mc",
+                    // slot: 'slotName',
+                    render: (params: any, $index: any) => {
+                        return h('div', `${$index} - ${params.date}`)
+                    }
                 },
                 {
-                    label: "操作",
-                    width: "100px",
+                    title: "操作",
+                    width: "200px",
                     slot: 'action',
                 },
 
@@ -174,36 +177,45 @@ export default defineComponent({
         }
 
         function selArrFun(params: any) {
-            console.log(params, 2345678);
-
+            console.log('选中数据：', params[0]);
         }
 
         function handlePageChange(pages: any) {
-            console.log(pages);
+            console.log('翻页数据：', pages);
+        }
+
+        let hendlerSlot = {
+            action: ({ scope }: any) => {
+                return <Fragment>
+                    <el-button onClick={() => {
+                        handleClick(scope.row, scope.$index)
+                    }} type="text" size="small">查看 </el-button>
+                    <el-button type="text" size="small">编辑</el-button>
+                </Fragment>
+            },
+            slotName: ({ scope }: any) => {
+                return <Fragment>
+                    {scope.row.name} - {scope.row.province} -{scope.$index}
+                </Fragment>
+            }
+
         }
         return () => (
+
             <dbsTable
+                autoHeight
                 configFlag={state.configFlag}
                 data={state.tableData}
                 columns={state.columns}
-                pageInfo={state.pageInfo}
                 onHandlePageChange={handlePageChange}
-                onSelArr={selArrFun}
-                v-slots={{
-                    action: (scope: { row: any; $index: any; }) => {
-                        return <Fragment>
-                            <el-button onClick={() => handleClick(scope.row, scope.$index)} type="text" size="small">查看</el-button>
-                            <el-button type="text" size="small">编辑</el-button>
-                        </Fragment>
-                    },
-                    slotName: (scope: { row: { name: any; province: any; }; $index: any; }) => {
-                        return <Fragment>
-                            {scope.row.name} - {scope.row.province} -{scope.$index}
-                        </Fragment>
-                    }
-                }}
+                onHandleSelectionChange={
+                    selArrFun
+                }
+                v-slots={
+                    hendlerSlot
+                }
             >
-            </dbsTable>
+            </dbsTable >
         )
     },
 })

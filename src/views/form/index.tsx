@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2021-10-03 00:25:31
- * @LastEditTime: 2021-10-14 20:12:50
+ * @LastEditTime: 2022-07-05 21:27:32
  * @Description: 
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/form/index.tsx
@@ -12,7 +12,7 @@ import { defineComponent, Fragment, reactive, ref } from "vue-demi";
 export default defineComponent({
     name: 'Form',
     setup() {
-        const formRef: any = ref(null);
+        let formRef: any = ref(null);
         const formData = reactive({
             name: '',
             region: '',
@@ -114,7 +114,7 @@ export default defineComponent({
         const formConfig = reactive(
             {
                 inline: true,
-                size: 'mini',
+                size: 'small',
                 labelWidth: '100px',
                 formItemWidth: "100%",
                 isShowFilter: false, // 是否显示收起按钮
@@ -124,13 +124,13 @@ export default defineComponent({
 
         const searchHandle = reactive(
             [
-                {
-                    label: "提交",
-                    width: "100px",
-                    type: "primary",
-                    // controlClick: pageType === 'watch' ? true : submitClick,
-                    handle: () => (submit as any)(),
-                },
+                // {
+                //     label: "提交",
+                //     width: "100px",
+                //     type: "primary",
+                //     // controlClick: pageType === 'watch' ? true : submitClick,
+                //     handle: () => (submit as any),
+                // },
                 // {
                 //     label: "提交",
                 //     width: "100px",
@@ -160,7 +160,8 @@ export default defineComponent({
         )
 
         async function submit() {
-            let isValidate = await formRef.value.validate();
+            console.log(formRef.value, 23456);
+            let isValidate = await formRef?.value?.validate();
             console.log('验证结果为：', isValidate,);
         }
 
@@ -168,6 +169,13 @@ export default defineComponent({
 
         return () => (
             < Fragment>
+                <el-date-picker
+                    v-model={formData.date}
+                    type="date"
+                    placeholder="选择日期"
+                >
+                </el-date-picker>
+
                 <div class='set-form'>
                     <p> form开启inline模式： <el-switch v-model={formConfig.inline}> </el-switch></p>
                     <p> form开启收起功能： <el-switch v-model={formConfig.isShowFilter}> </el-switch></p>
@@ -182,7 +190,7 @@ export default defineComponent({
                     formConfig={formConfig}
                     searchHandle={searchHandle}
                 ></dbsForm>
-            </Fragment>
+            </Fragment >
             // <el-form
             //     model={formData}
             //     ref={formRef.value}

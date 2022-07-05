@@ -7,7 +7,7 @@ import { useStore } from "vuex";
 /*
  * @Author: luyao
  * @Date: 2021-10-02 20:42:08
- * @LastEditTime: 2021-10-08 13:57:36
+ * @LastEditTime: 2021-10-20 21:44:10
  * @Description:
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/views/home/components/menuList.tsx
@@ -17,19 +17,12 @@ export default defineComponent({
     setup() {
         const route = useRoute();
         const store = useStore();
-        const $eventBus: any = inject("$eventBus");
 
         let actRouter = ref('');
         let isCollapse = computed(() => store.getters.getCollapse)
-
-        // $eventBus.$on('shrink', () => {
-        //     isCollapse.value = !isCollapse.value
-        // })
-
         function setTags(to: any) {
             actRouter.value = to.meta.act;
         }
-
         setTags(route);
         onBeforeRouteUpdate((to) => {
             setTags(to);
