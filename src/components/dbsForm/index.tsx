@@ -1,7 +1,7 @@
 /*
  * @Author: luyao
  * @Date: 2022-06-28 14:25:42
- * @LastEditTime: 2022-07-05 21:29:24
+ * @LastEditTime: 2022-07-06 19:05:15
  * @Description: 
  * @LastEditors: luyao
  * @FilePath: /vue3-tsx-vite-admin/src/components/dbsForm/index.tsx
@@ -14,10 +14,10 @@ import { Bottom, Top } from "@element-plus/icons-vue";
 export default defineComponent({
 
     props: {
-        ref: {
-            type: String,
-            default: "form",
-        },
+        // ref: {
+        //     type: String,
+        //     default: "form",
+        // },
 
         // 搜索项
         searchForm: {
@@ -55,8 +55,8 @@ export default defineComponent({
             // },
         },
     },
-    emits: ["getFormRef", "handleReset", "handleSearch"],
-    setup(props, { emit, slots }) {
+    emits: ["getFormRef", "handleReset", "handleSearch", "validate"],
+    setup(props, { emit, slots, expose }) {
         const dbsFormRef: any = ref(null);
         const state = reactive({
             searchBtnShow: true,
@@ -100,10 +100,9 @@ export default defineComponent({
             dbsFormRef.value.resetFields();
         }
 
-
-        function validate() {
+        function validateFun() {
             return new Promise((resolve, reject) => {
-                dbsFormRef.value.validate((valid: unknown) => {
+                dbsFormRef.value.validate(async (valid: unknown) => {
                     resolve(valid);
                 });
             });
@@ -124,7 +123,15 @@ export default defineComponent({
             let pageSize =
                 props.searchData.hasOwnProperty("pageSize") && props.searchData.pageSize;
             Object.keys(props.searchData).forEach((item, index) => {
-                props.searchData[item] = null;
+                if (typeof props.searchData[item] == "string") {
+                    props.searchData[item] = '';
+                } else if (typeof props.searchData[item] == "boolean") {
+                    props.searchData[item] = true;
+                } else if (Array.isArray(props.searchData[item])) {
+                    props.searchData[item] = [];
+                } else {
+                    props.searchData[item] = {};
+                }
             });
             if (props.searchData.hasOwnProperty("pageSize")) {
                 props.searchData.pageSize = pageSize;
@@ -137,7 +144,7 @@ export default defineComponent({
 
         function search() {
             Object.keys(props.searchData).forEach((item, index) => {
-                if (props.searchData[item] == "") {
+                if (props.searchData[item] == " ") {
                     props.searchData[item] = null;
                 }
             });
@@ -165,8 +172,8 @@ export default defineComponent({
             });
         }
         showAllSearch();
+        expose({ validateFun });
         return () => (
-
             <el-form
                 class={
                     [
@@ -176,7 +183,7 @@ export default defineComponent({
                         'search-form-box'
                     ]
                 }
-                ref="dbsFormRef"
+                ref={dbsFormRef}
                 model={props.searchData}
                 size={state.formConfig.size}
                 inline={state.formConfig.inline}
@@ -394,8 +401,8 @@ export default defineComponent({
                     !!state.formConfig.isHandle && <div class="btn-box" >
                         {
                             (props.searchHandle || []).map((item: any) => {
-                                return (!item.slot ? <el-button disabled={item.controlClick || false} type={item.type} onClick={item.handle(dbsFormRef)}
-                                > {{ item }}</el-button> : <span v-slots={{ default: item.slot }}></span>)
+                                return (!item.slot ? <el-button disabled={item.controlClick || false} type={item.type} onClick={item.handle()}
+                                > {item.label}</el-button> : <span v-slots={{ default: item.slot }}></span>)
                             })
                         }
                         {
